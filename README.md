@@ -31,15 +31,18 @@ Abre el archivo `analisis.ipynb` en Jupyter Notebook o Google Colab para ejecuta
 A partir del análisis realizado, se obtuvieron las siguientes conclusiones:
 
 - **Distribución de clientes:**  
-  ![Distribución de clientes](./image/Distribucion_Clientes.png)
+    La mayoría de los clientes se concentran en ciertos segmentos demográficos y de servicios, lo que sugiere oportunidades para personalizar ofertas y mejorar la retención en grupos específicos.  
+    ![Distribución de clientes](./image/Distribucion_Clientes.png)
 
 - **Churn por tipo de contrato:**  
-  ![Churn por tipo de contrato](./image/churn_tipo_contrato.png)
+    Se observó que los clientes con contratos mensuales presentan una tasa de abandono significativamente mayor en comparación con aquellos con contratos a largo plazo. Esto indica que incentivar contratos de mayor duración podría reducir el churn.  
+    ![Churn por tipo de contrato](./image/churn_tipo_contrato.png)
 
 - **Relación entre cargos mensuales y churn:**  
-  ![Cargos mensuales vs Churn](./image/cargos_mensuales_churn.png)
+    Los clientes con cargos mensuales más altos tienden a abandonar el servicio con mayor frecuencia. Es recomendable revisar la estructura de precios y ofrecer beneficios adicionales a estos clientes para mejorar su satisfacción y permanencia.  
+    ![Cargos mensuales vs Churn](./image/cargos_mensuales_churn.png)
 
-Estos gráficos muestran las tendencias clave identificadas en el análisis, facilitando la interpretación de los resultados y apoyando la toma de decisiones estratégicas.
+Estos gráficos muestran las tendencias clave identificadas en el análisis, facilitando la interpretación de los resultados y apoyando la toma de decisiones estratégicas orientadas a la retención y satisfacción del cliente.
 
 ## Autor
 
