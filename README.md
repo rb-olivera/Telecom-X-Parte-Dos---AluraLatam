@@ -31,13 +31,13 @@ Abre el archivo `analisis.ipynb` en Jupyter Notebook o Google Colab para ejecuta
 A partir del análisis realizado, se obtuvieron las siguientes conclusiones:
 
 - **Distribución de clientes:**  
-  ![Distribución de clientes](./img/distribucion_clientes.png)
+  ![Distribución de clientes](./image/Distribucion_Clientes.png)
 
 - **Churn por tipo de contrato:**  
-  ![Churn por tipo de contrato](./img/churn_tipo_contrato.png)
+  ![Churn por tipo de contrato](./image/churn_tipo_contrato.png)
 
 - **Relación entre cargos mensuales y churn:**  
-  ![Cargos mensuales vs Churn](./img/cargos_mensuales_churn.png)
+  ![Cargos mensuales vs Churn](./image/cargos_mensuales_churn.png)
 
 Estos gráficos muestran las tendencias clave identificadas en el análisis, facilitando la interpretación de los resultados y apoyando la toma de decisiones estratégicas.
 
