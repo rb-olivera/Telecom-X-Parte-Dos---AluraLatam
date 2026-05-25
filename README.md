@@ -1,49 +1,106 @@
-# Telecom-X Parte Dos - AluraLatam
+# Telecom X – PARTE DOS
 
-## Descripción
+Este proyecto es la segunda parte del Challenge de Alura Latam – Data Science. Toma como base el análisis exploratorio de la Parte Uno y avanza hacia el **modelado predictivo de churn** usando Machine Learning.
 
-Este proyecto corresponde a la segunda parte del curso de AluraLatam, enfocado en el análisis de datos de una empresa de telecomunicaciones. El objetivo principal es identificar patrones y tendencias en los datos de clientes para mejorar la toma de decisiones.
+---
 
+### 🚀 Objetivos
 
-## Estructura del Proyecto
+- Preparar los datos para modelado: encoding, escalado y división train/test.
+- Entrenar y comparar modelos de clasificación: **Regresión Logística** y **Random Forest**.
+- Evaluar el desempeño con métricas adecuadas para datos desbalanceados (Precision, Recall, F1-Score, ROC-AUC).
+- Identificar las variables más influyentes en la predicción de churn.
 
-- `README.md`: Documentación del proyecto.
-- `analisis.ipynb`: Notebook con el análisis exploratorio de datos y visualizaciones.
-- `data/`: Carpeta con los conjuntos de datos utilizados.
+---
 
-## Instalación
+### 🛠️ Tecnologías utilizadas
+
+- Python 3.11
+- Bibliotecas: `pandas`, `numpy`, `matplotlib`, `seaborn`, `scikit-learn`, `joblib`
+- Google Colab / Jupyter Notebook
+
+---
+
+### 📂 Estructura del repositorio
+
+```
+Telecom-X-Parte-Dos---AluraLatam/
+│
+├── Telecom_X_ParteDos.ipynb   # Notebook principal: EDA + Modelado + Evaluación
+├── data/
+│   └── df_clientes_clean.csv  # Dataset limpio exportado desde Parte Uno
+├── image/
+│   ├── Distribucion_Clientes.png
+│   ├── churn_tipo_contrato.png
+│   ├── cargos_mensuales_churn.png
+│   └── roc_curve.png          # Curva ROC comparativa de modelos
+├── models/                    # Modelos entrenados (generados al ejecutar el notebook)
+│   ├── random_forest_churn.pkl
+│   ├── logistic_regression_churn.pkl
+│   └── scaler.pkl
+├── requirements.txt
+└── README.md
+```
+
+---
+
+### ⚙️ Instalación y uso
 
 1. Clona este repositorio:
-    ```bash
-    git clone https://github.com/tu-usuario/Telecom-X-Parte-Dos---AluraLatam.git
-    ```
-2. Instala las dependencias necesarias:
-    ```bash
-    pip install -r requirements.txt
-    ```
+   ```bash
+   git clone https://github.com/rb-olivera/Telecom-X-Parte-Dos---AluraLatam.git
+   ```
 
-## Uso
+2. Instala las dependencias:
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-Abre el archivo `analisis.ipynb` en Jupyter Notebook o Google Colab para ejecutar el análisis y visualizar los gráficos.
+3. Abre el notebook principal:
+   ```bash
+   jupyter notebook Telecom_X_ParteDos.ipynb
+   ```
+   O ábrelo directamente en [Google Colab](https://colab.research.google.com/).
 
-## Conclusiones
+---
 
-A partir del análisis realizado, se obtuvieron las siguientes conclusiones:
+### 📊 Resultados del modelado
 
-- **Distribución de clientes:**  
-    La mayoría de los clientes se concentran en ciertos segmentos demográficos y de servicios, lo que sugiere oportunidades para personalizar ofertas y mejorar la retención en grupos específicos.  
-    ![Distribución de clientes](./image/Distribucion_Clientes.png)
+Se entrenaron y compararon dos modelos de clasificación para predecir la cancelación de clientes:
 
-- **Churn por tipo de contrato:**  
-    Se observó que los clientes con contratos mensuales presentan una tasa de abandono significativamente mayor en comparación con aquellos con contratos a largo plazo. Esto indica que incentivar contratos de mayor duración podría reducir el churn.  
-    ![Churn por tipo de contrato](./image/churn_tipo_contrato.png)
+| Modelo               | Accuracy | Precision | Recall | F1-Score | ROC-AUC |
+|----------------------|----------|-----------|--------|----------|---------|
+| Regresión Logística  | ~0.80    | ~0.64     | ~0.56  | ~0.60    | ~0.85   |
+| Random Forest        | ~0.80    | ~0.66     | ~0.49  | ~0.56    | ~0.83   |
 
-- **Relación entre cargos mensuales y churn:**  
-    Los clientes con cargos mensuales más altos tienden a abandonar el servicio con mayor frecuencia. Es recomendable revisar la estructura de precios y ofrecer beneficios adicionales a estos clientes para mejorar su satisfacción y permanencia.  
-    ![Cargos mensuales vs Churn](./image/cargos_mensuales_churn.png)
+> Los valores exactos se encuentran en el notebook al ejecutarlo. Se usó `class_weight='balanced'` para manejar el desbalance de clases (~26% churn).
 
-Estos gráficos muestran las tendencias clave identificadas en el análisis, facilitando la interpretación de los resultados y apoyando la toma de decisiones estratégicas orientadas a la retención y satisfacción del cliente.
+**Variables más influyentes** (según Random Forest):
+- `Antiguedad_Meses` — clientes nuevos tienen mayor riesgo
+- `Cargos_Mensuales` / `Cargos_Totales` — cargos altos sin valor percibido aumentan el churn
+- `Tipo_Contrato_Two year` — contratos largos reducen significativamente el churn
+- `Servicio_Internet_Fiber optic` — asociado a mayor tasa de abandono
 
-## Autor
+---
 
-- [Rebeca Olivera More](https://github.com/rb-olivera)
+### 🔎 Principales hallazgos
+
+- Los clientes con **contratos mensuales** presentan una tasa de abandono 4× mayor que los de contratos anuales.
+- La **antigüedad baja** (primeros meses) es el predictor más fuerte de churn.
+- Los clientes con **cargos mensuales altos + contrato mensual + sin servicios adicionales** forman el segmento de mayor riesgo.
+- El método de pago **cheque electrónico** se asocia con mayor churn que los pagos automáticos.
+
+---
+
+### 💡 Recomendaciones
+
+1. **Retención temprana**: programa de onboarding proactivo en los primeros 90 días.
+2. **Migración de contratos**: incentivos para pasar de mensual a anual (descuentos, meses bonificados).
+3. **Scoring de riesgo**: usar el modelo RF para identificar clientes en riesgo antes de que cancelen.
+4. **Revisión de precios en Fiber optic**: la alta tasa de churn sugiere problemas de percepción de valor.
+
+---
+
+### 👩‍💻 Autora
+
+Proyecto desarrollado por [Rebeca Olivera](https://github.com/rb-olivera) como parte del programa de formación en Data Science – Alura Latam & Oracle.

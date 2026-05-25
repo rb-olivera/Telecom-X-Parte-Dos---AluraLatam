@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.env
+.venv
+env/
+venv/
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+# Archivos generados por el análisis
+*.html
+models/
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+desktop.ini
